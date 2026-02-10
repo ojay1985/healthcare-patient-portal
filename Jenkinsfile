@@ -22,6 +22,21 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy to Hospital Test Server') {
+            steps {
+                bat '''
+                echo Deploying to hospital test server
+
+                IF NOT EXIST C:\\hospital-test-server (
+                  mkdir C:\\hospital-test-server
+                )
+
+                copy index.html C:\\hospital-test-server\\index.html
+
+                echo Deployment completed
+                '''
+            }
+        }
     }
 }
-
